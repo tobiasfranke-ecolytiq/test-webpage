@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query Parameter Example</title>
+</head>
+<body>
+    <h1>Your query parameter:</h1>
+    <p id="parameter"></p>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const parameterName = "name"; // Replace "name" with your actual parameter name
+        const parameterValue = urlParams.get(parameterName);
+
+        if (parameterValue) {
+            document.getElementById("parameter").textContent = parameterValue;
+        } else {
+            document.getElementById("parameter").textContent = "No query parameter found.";
+        }
+    </script>
+</body>
+</html>
