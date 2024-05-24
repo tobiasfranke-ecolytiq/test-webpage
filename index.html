@@ -5,18 +5,18 @@
     <title>Query Parameter Example</title>
 </head>
 <body>
-    <h1>Your query parameter:</h1>
-    <p id="parameter"></p>
+    <h1>Transaction Refinement</h1>
+    Transaction ID: <p id="parameter"></p>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const parameterName = "name"; // Replace "name" with your actual parameter name
+        const parameterName = "transaction-id"; // Replace "name" with your actual parameter name
         const parameterValue = urlParams.get(parameterName);
 
         if (parameterValue) {
             document.getElementById("parameter").textContent = parameterValue;
         } else {
-            document.getElementById("parameter").textContent = "No query parameter found.";
+            document.getElementById("parameter").textContent = "No transaction ID found.";
         }
     </script>
 </body>
