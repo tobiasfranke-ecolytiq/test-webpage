@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Query Parameter Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Query Parameter Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h1>Transaction Refinement</h1>
-    <p>Transaction ID: <span id="parameter"></span></p>
-    <button onclick="window.location.href = '/test-webpage/success'">Save Refinement</button>
+  <h1>Transaction Refinement</h1>
+  <p>Transaction ID: <span id="parameter"></span></p>
+  <label for="footprint">Footprint:</label>
+  <input type="text" id="footprint" name="footprint" placeholder="20 kg">
+  <br>
+  <button onclick="appendFootprint()">Save Refinement</button>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const parameterName = "transaction-id"; // Replace "name" with your actual parameter name
-        const parameterValue = urlParams.get(parameterName);
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const parameterName = "transaction-id"; // Replace "name" with your actual parameter name
+    const parameterValue = urlParams.get(parameterName);
 
-        if (parameterValue) {
-            document.getElementById("parameter").textContent = parameterValue;
-        } else {
-            document.getElementById("parameter").textContent = "No transaction ID found.";
-        }
-    </script>
+    if (parameterValue) {
+      document.getElementById("parameter").textContent = parameterValue;
+    } else {
+      document.getElementById("parameter").textContent = "No transaction ID found.";
+    }
+
+    function appendFootprint() {
+      const footprintValue = document.getElementById("footprint").value;
+      const successUrl = "/test-webpage/success";
+
+      // Create a new URLSearchParams object
+      const params = new URLSearchParams();
+
+      // Add existing query parameters (if any)
+      for (const [key, value] of urlParams.entries()) {
+        params.append(key, value);
+      }
+
+      // Add the footprint parameter
+      params.append("footprint", footprintValue);
+
+      // Build the new success URL with appended parameters
+      const newSuccessUrl = successUrl + "?" + params.toString();
+
+      // Redirect to the new success URL
+      window.location.href = newSuccessUrl;
+    }
+  </script>
 </body>
 </html>
